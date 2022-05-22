@@ -1,7 +1,8 @@
-package com.tusofia.scienceblog.security.jwt.service;
+package com.tusofia.scienceblog.security.jwt.service.impl;
 
 import com.tusofia.scienceblog.model.entity.User;
 import com.tusofia.scienceblog.repository.UserRepository;
+import com.tusofia.scienceblog.security.jwt.service.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
