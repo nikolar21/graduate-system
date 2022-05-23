@@ -21,7 +21,7 @@ public class TestController {
 		return "Student Board.";
 	}
 
-	@GetMapping("/mod")
+	@GetMapping("/mentor")
 	@PreAuthorize("hasRole('MENTOR')")
 	public String moderatorAccess() {
 		return "Mentor Board.";
