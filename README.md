@@ -1,1 +1,1 @@
-# science-blog
+# graduate-system
