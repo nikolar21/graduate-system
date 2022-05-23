@@ -2,11 +2,14 @@ package com.tusofia.graduatesystem.model.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -49,6 +52,14 @@ public class User {
 
   @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private Mentor mentor;
+
+  @CreationTimestamp
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date createDate;
+
+  @UpdateTimestamp
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date modifyDate;
 
   public User(String username, String email, String password) {
     this.username = username;

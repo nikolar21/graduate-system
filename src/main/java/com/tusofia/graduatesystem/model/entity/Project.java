@@ -27,14 +27,18 @@ public class Project {
   @OneToOne(mappedBy = "project")
   private Student student;
 
+  private String comment;
+
+  private boolean isApproved;
+
+  private boolean isDeclined;
+
   @CreationTimestamp
   @Temporal(TemporalType.TIMESTAMP)
-  @Column(name = "create_date")
   private Date createDate;
 
   @UpdateTimestamp
   @Temporal(TemporalType.TIMESTAMP)
-  @Column(name = "modify_date")
   private Date modifyDate;
 
 }
