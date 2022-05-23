@@ -2,7 +2,7 @@ package com.tusofia.scienceblog.security;
 
 import com.tusofia.scienceblog.security.jwt.AuthEntryPointJwt;
 import com.tusofia.scienceblog.security.jwt.AuthTokenFilter;
-import com.tusofia.scienceblog.security.jwt.service.UserDetailsServiceImpl;
+import com.tusofia.scienceblog.security.jwt.service.impl.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,10 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(
-    securedEnabled = true,
-    jsr250Enabled = true,
-    prePostEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 @RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -66,9 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
         .authorizeRequests()
-        .antMatchers("/api/auth/**")
-        .permitAll()
-        .antMatchers("/api/test/**")
+        .antMatchers("/**")
         .permitAll()
         .anyRequest()
         .authenticated();

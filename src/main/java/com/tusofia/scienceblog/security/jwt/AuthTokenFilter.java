@@ -1,6 +1,6 @@
 package com.tusofia.scienceblog.security.jwt;
 
-import com.tusofia.scienceblog.security.jwt.service.UserDetailsServiceImpl;
+import com.tusofia.scienceblog.security.jwt.service.impl.UserDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
