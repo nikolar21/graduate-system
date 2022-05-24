@@ -11,6 +11,14 @@ import javax.validation.constraints.*;
 public class RegistrationRequest {
 
   @NotBlank
+  @Size(min = 2, max = 20)
+  private String firstName;
+
+  @NotBlank
+  @Size(min = 2, max = 20)
+  private String lastName;
+
+  @NotBlank
   @Size(min = 3, max = 20)
   private String username;
 

@@ -1,7 +1,7 @@
 package com.tusofia.graduatesystem.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -11,7 +11,10 @@ import java.util.Date;
 
 @Entity
 @Table(name = "student")
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Student  {
 
   @Id
