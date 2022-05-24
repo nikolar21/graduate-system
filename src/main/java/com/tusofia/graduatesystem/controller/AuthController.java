@@ -4,6 +4,9 @@ import com.tusofia.graduatesystem.model.request.LoginRequest;
 import com.tusofia.graduatesystem.model.response.JwtResponse;
 import com.tusofia.graduatesystem.security.jwt.JwtUtils;
 import com.tusofia.graduatesystem.security.jwt.service.CustomUserDetails;
+import io.swagger.annotations.ApiResponse;
+
+import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,8 +30,12 @@ public class AuthController {
 
   private final JwtUtils jwtUtils;
 
+  @ApiResponses(value = {
+          @ApiResponse(code = 401, message = "Bad Credentials - Unathorized"),
+          @ApiResponse(code = 200, message = "Successful login",
+                  response = JwtResponse.class, responseContainer = "List")})
   @PostMapping("/login")
-  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+  public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
     Authentication authentication =
         authenticationManager.authenticate(
