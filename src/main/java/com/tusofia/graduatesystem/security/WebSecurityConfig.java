@@ -2,7 +2,7 @@ package com.tusofia.graduatesystem.security;
 
 import com.tusofia.graduatesystem.security.jwt.AuthEntryPointJwt;
 import com.tusofia.graduatesystem.security.jwt.AuthTokenFilter;
-import com.tusofia.graduatesystem.security.jwt.service.impl.UserDetailsServiceImpl;
+import com.tusofia.graduatesystem.security.jwt.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

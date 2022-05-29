@@ -2,10 +2,9 @@ package com.tusofia.graduatesystem.controller;
 
 import com.tusofia.graduatesystem.model.request.LoginRequest;
 import com.tusofia.graduatesystem.model.response.JwtResponse;
+import com.tusofia.graduatesystem.security.jwt.CustomUserDetails;
 import com.tusofia.graduatesystem.security.jwt.JwtUtils;
-import com.tusofia.graduatesystem.security.jwt.service.CustomUserDetails;
 import io.swagger.annotations.ApiResponse;
-
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -51,8 +50,7 @@ public class AuthController {
             .map(GrantedAuthority::getAuthority)
             .collect(Collectors.toList());
 
-    return ResponseEntity.ok(
-        new JwtResponse(
-            jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
+    return ResponseEntity
+            .ok(new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
   }
 }

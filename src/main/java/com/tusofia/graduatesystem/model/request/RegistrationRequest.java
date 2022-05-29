@@ -3,9 +3,12 @@ package com.tusofia.graduatesystem.model.request;
 import com.tusofia.graduatesystem.model.entity.ERole;
 import lombok.Data;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.Set;
-
-import javax.validation.constraints.*;
 
 @Data
 public class RegistrationRequest {
@@ -17,6 +20,9 @@ public class RegistrationRequest {
   @NotBlank
   @Size(min = 2, max = 20)
   private String lastName;
+
+  @NotNull
+  private LocalDate birthDate;
 
   @NotBlank
   @Size(min = 3, max = 20)

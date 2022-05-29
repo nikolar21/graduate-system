@@ -1,8 +1,7 @@
-package com.tusofia.graduatesystem.security.jwt.service.impl;
+package com.tusofia.graduatesystem.security.jwt;
 
 import com.tusofia.graduatesystem.model.entity.User;
 import com.tusofia.graduatesystem.repository.UserRepository;
-import com.tusofia.graduatesystem.security.jwt.service.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

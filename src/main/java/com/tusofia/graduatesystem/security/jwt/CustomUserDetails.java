@@ -1,4 +1,4 @@
-package com.tusofia.graduatesystem.security.jwt.service;
+package com.tusofia.graduatesystem.security.jwt;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tusofia.graduatesystem.model.entity.User;

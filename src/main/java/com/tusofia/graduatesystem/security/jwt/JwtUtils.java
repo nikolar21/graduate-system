@@ -1,6 +1,5 @@
 package com.tusofia.graduatesystem.security.jwt;
 
-import com.tusofia.graduatesystem.security.jwt.service.CustomUserDetails;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

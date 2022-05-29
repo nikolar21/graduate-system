@@ -8,7 +8,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +28,17 @@ public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
+  @NotBlank
+  @Size(max = 20)
+  private String firstname;
+
+  @NotBlank
+  @Size(max = 20)
+  private String lastname;
+
+  @NotNull
+  private LocalDate birthDate;
 
   @NotBlank
   @Size(max = 20)
@@ -47,12 +60,6 @@ public class User {
       inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles = new HashSet<>();
 
-  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private Student student;
-
-  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private Mentor mentor;
-
   @CreationTimestamp
   @Temporal(TemporalType.TIMESTAMP)
   private Date createDate;
@@ -61,7 +68,10 @@ public class User {
   @Temporal(TemporalType.TIMESTAMP)
   private Date modifyDate;
 
-  public User(String username, String email, String password) {
+  public User(String firstname, String lastname, LocalDate birthDate, String username, String email, String password) {
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.birthDate = birthDate;
     this.username = username;
     this.email = email;
     this.password = password;
