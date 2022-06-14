@@ -1,14 +1,12 @@
 package com.tusofia.graduatesystem.model.request;
 
+import javax.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import javax.validation.constraints.NotBlank;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class MentorRequest extends RegistrationRequest {
 
-  @NotBlank
-  private String discipline;
+  @NotBlank private String discipline;
 }

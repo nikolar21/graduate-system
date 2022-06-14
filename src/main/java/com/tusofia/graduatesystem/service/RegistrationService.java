@@ -9,5 +9,4 @@ public interface RegistrationService {
   ResponseEntity<MessageResponse> userRegistration(RegistrationRequest signUpRequest);
 
   ResponseEntity<MessageResponse> basicUserRegistration(RegistrationRequest signUpRequest);
-
 }

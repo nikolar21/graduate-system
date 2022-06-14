@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public ResponseEntity<MessageResponse> deleteUserById(Long id) {
-      userRepository.deleteById(id);
-      return ResponseEntity.ok(new MessageResponse("User deleted successfully"));
+    userRepository.deleteById(id);
+    return ResponseEntity.ok(new MessageResponse("User deleted successfully"));
   }
 }
