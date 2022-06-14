@@ -1,0 +1,73 @@
+///////////////////////////////////////////////
+PUBLIC CONTENT - Everyone should see list of all uploaded projects in a grid view
+Users can comment if they have account* (not neccessary but good to have)
+
+LOGIN endpoint - /api/auth/login
+
+System will have 3 types of users (ADMIN, INSPECTOR, BASIC USER)
+///////////////////////////////////////////////
+ADMIN PANEL
+Admin should be able to register new inspector accounts - /api/admin/register-inspector
+Admin should be able to delete accounts - /api/admin/delete-user/{id}
+Admin should be able to see all users - /api/admin/all-users
+Admin should be able to filter all users by role - /api/admin/filter/{role}
+
+///////////////////////////////////////////////
+INSPECTOR PANEL - IN CHARGE OF UPLOADING FINAL PROJECTS
+Inspector after login should be able to see something like grid view with all projects that are uploaded - /api/inspector/homepage
+Inspector should be able to upload project - api/inspector/project/upload - probably button that says upload new project
+when clicked will open form where inspector can put some details about project, student name, mentor, place to upload project and etc.
+Inspector should be able to update some projects - api/inspector/project/edit
+Inspector should be able to delete some projects - api/inspector/project/delete 
+
+///////////////////////////////////////////////
+BASIC USER PANEL - BASIC USER WILL HAVE READ-ONLY ACCESS
+Basic user after login will see all projects with possibility to comment
+Basic user can filter projects with year of graduating
+Maybe some other filtering based on some diff parameters
+
+//////////////////////////////////////////////
+BASIC USER SCENARIO
+For example random user opens website
+He will be able to see projects but without permission to comment
+He will have buttons for login or sign up
+If he wants to comment he will need to make registration or login to his account
+After registration/login he will be able to comment
+
+//////////////////////////////////////////////
+INSPECTOR SCENARIO
+Inspector opens website and login
+He can see all projects
+He can find somewhere placed button for uploading new project
+After clicking it will open some for to fill it and upload project
+Possible field for filling will be: student full name, student faculty and specialty,
+mentor name(list of available mentors/or just field to enter mentor's name)
+year of graduation, maybe mark or review from final project graduation...
+After he fill the form he can submit it and project will appear in the list with all projects
+
+//////////////////////////////////////////////
+ADMIN SCENARIO
+Admin can login
+He will see same things but will have button for registering new accounts(inspectors)
+Clicking on it will open sing up form that will allow him to register new inpector/user
+He will be able to delete users aswell
+Maybe he and inspector will be able to delete some inappropriate comments
+
+LOGIN endpoint - /api/auth/login
+PROJECTS endpoint - api/projects - GET Request
+ADMIN endpoints:
+/api/admin/users - POST Request
+/api/admin/users - GET Request
+/api/admin/users/{id} - DELETE Request
+/api/comments/{id} - DELETE Request
+INSPECTOR endpoints:
+/api/inspector/projects - POST REQUEST
+/api/comments/{id}
+USER endpoints:
+/api/user/comments - POST REQUEST
+/api/users - POST REQUEST - ROLE SELECTION DISABLED(MANDATORY ROLE=USER)
+FILTERING endpoints:
+/api/projects?filters=... - 
+/api/projects/search
+
+
