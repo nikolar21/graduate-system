@@ -1,12 +1,21 @@
 package com.tusofia.graduatesystem.model.request;
 
-import javax.validation.constraints.NotBlank;
+import java.time.Year;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class StudentRequest extends RegistrationRequest {
+public class StudentRequest {
 
-  @NotBlank private String course;
+  @NotNull
+  private String firstName;
+
+  @NotNull
+  private String lastName;
+
+  @NotNull
+  private String specialty;
+
+  @NotNull
+  private Year graduationYear;
 }

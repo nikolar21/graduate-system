@@ -1,15 +1,11 @@
 package com.tusofia.graduatesystem.service;
 
 import com.tusofia.graduatesystem.model.entity.Project;
+import com.tusofia.graduatesystem.repository.pagination.ProjectPage;
+import com.tusofia.graduatesystem.repository.pagination.ProjectSearchCriteria;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.data.web.SortDefault;
 
 public interface ProjectService {
-  Page<Project> findAllProjects(
-      @PageableDefault(size = 20)
-          @SortDefault.SortDefaults({@SortDefault(sort = "id", direction = Sort.Direction.ASC)})
-          Pageable pageable);
+
+  Page<Project> getProjects(ProjectPage projectPage, ProjectSearchCriteria employeeSearchCriteria);
 }

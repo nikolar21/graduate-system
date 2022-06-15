@@ -1,8 +1,10 @@
 package com.tusofia.graduatesystem.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -47,7 +50,8 @@ public class User {
   @Size(max = 20)
   private String lastname;
 
-  @NotNull private LocalDate birthDate;
+  @NotNull
+  private LocalDate birthDate;
 
   @NotBlank
   @Size(max = 20)
@@ -61,6 +65,10 @@ public class User {
   @NotBlank
   @Size(max = 120)
   private String password;
+
+  @JsonManagedReference
+  @OneToMany(mappedBy = "user")
+  private List<Comment> comments;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(

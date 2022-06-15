@@ -1,25 +1,17 @@
 package com.tusofia.graduatesystem.model.request;
 
-import java.time.Year;
-import javax.validation.constraints.NotBlank;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import lombok.Data;
 
 @Data
 public class ProjectRequest {
 
   @NotNull
-  private String studentFirstName;
+  private Long mentorId;
 
-  @NotNull
-  private String studentLastName;
-
-  @NotNull
-  private String studentSpecialty;
-
-  @NotNull
-  private Year graduationYear;
+  @Valid
+  private StudentRequest student;
 
   @NotNull
   private String title;
@@ -32,19 +24,4 @@ public class ProjectRequest {
 
   @NotNull
   private String projectFileName;
-
-  @NotBlank
-  @Size(max = 20)
-  private String mentorFirstName;
-
-  @NotBlank
-  @Size(max = 20)
-  private String mentorLastName;
-
-  @NotBlank
-  @Size(max = 20)
-  private String mentorFaculty;
-
-  @Size(max = 20)
-  private String mentorDiscipline;
 }

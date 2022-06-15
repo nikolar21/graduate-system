@@ -1,12 +1,25 @@
 package com.tusofia.graduatesystem.model.request;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class MentorRequest extends RegistrationRequest {
+public class MentorRequest {
 
-  @NotBlank private String discipline;
+  @NotNull
+  @Size(max = 20)
+  private String mentorFirstName;
+
+  @NotNull
+  @Size(max = 20)
+  private String mentorLastName;
+
+  @NotNull
+  @Size(max = 20)
+  private String mentorFaculty;
+
+  @NotNull
+  @Size(max = 20)
+  private String mentorDiscipline;
 }

@@ -2,13 +2,12 @@ package com.tusofia.graduatesystem.service.impl;
 
 import com.tusofia.graduatesystem.model.entity.Project;
 import com.tusofia.graduatesystem.repository.ProjectRepository;
+import com.tusofia.graduatesystem.repository.pagination.ProjectCriteriaRepository;
+import com.tusofia.graduatesystem.repository.pagination.ProjectPage;
+import com.tusofia.graduatesystem.repository.pagination.ProjectSearchCriteria;
 import com.tusofia.graduatesystem.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,11 +15,9 @@ import org.springframework.stereotype.Service;
 public class ProjectServiceImpl implements ProjectService {
 
   private final ProjectRepository projectRepository;
+  private final ProjectCriteriaRepository projectCriteriaRepository;
 
-  public Page<Project> findAllProjects(
-      @PageableDefault(size = 20)
-          @SortDefault.SortDefaults({@SortDefault(sort = "id", direction = Sort.Direction.ASC)})
-          Pageable pageable) {
-    return projectRepository.findAllProjects(pageable);
+  public Page<Project> getProjects(ProjectPage projectPage, ProjectSearchCriteria employeeSearchCriteria) {
+    return projectCriteriaRepository.findAllWithFilters(projectPage, employeeSearchCriteria);
   }
 }

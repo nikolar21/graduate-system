@@ -33,6 +33,11 @@ public class Comment {
   @JoinColumn(name = "project_id")
   private Project project;
 
+  @JsonBackReference
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  private User user;
+
   @CreationTimestamp
   @Temporal(TemporalType.TIMESTAMP)
   private Date createDate;

@@ -7,6 +7,7 @@ import com.tusofia.graduatesystem.model.response.MessageResponse;
 import com.tusofia.graduatesystem.repository.MentorRepository;
 import com.tusofia.graduatesystem.repository.ProjectRepository;
 import com.tusofia.graduatesystem.service.InspectorService;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -20,25 +21,20 @@ public class InspectorServiceImpl implements InspectorService {
   public ResponseEntity<MessageResponse> addProject(ProjectRequest request) {
 
     Project project = new Project();
-    project.setStudentFirstName(request.getStudentFirstName());
-    project.setStudentLastName(request.getStudentLastName());
-    project.setStudentSpecialty(request.getStudentSpecialty());
-    project.setGraduationYear(request.getGraduationYear());
+    project.setStudentFirstName(request.getStudent().getFirstName());
+    project.setStudentLastName(request.getStudent().getLastName());
+    project.setStudentSpecialty(request.getStudent().getSpecialty());
+    project.setGraduationYear(request.getStudent().getGraduationYear());
 
     project.setTitle(request.getTitle());
     project.setSubject(request.getSubject());
     project.setDescription(request.getDescription());
     project.setProjectFileName(request.getProjectFileName());
 
-    Mentor mentor = new Mentor();
-    mentor.setFirstname(request.getMentorFirstName());
-    mentor.setLastname(request.getMentorLastName());
-    mentor.setFaculty(request.getMentorFaculty());
-    mentor.setDisciplines(request.getMentorDiscipline());
+    Optional<Mentor> mentor = mentorRepository.findById(request.getMentorId());
 
-    project.setMentor(mentor);
+    mentor.ifPresent(project::setMentor);
 
-    mentorRepository.save(mentor);
     projectRepository.save(project);
 
     return ResponseEntity.ok(new MessageResponse("Successfully added new project!"));
