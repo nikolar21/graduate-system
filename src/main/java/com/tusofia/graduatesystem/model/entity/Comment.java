@@ -1,5 +1,6 @@
 package com.tusofia.graduatesystem.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,6 +28,7 @@ public class Comment {
 
   private String comment;
 
+  @JsonBackReference
   @ManyToOne
   @JoinColumn(name = "project_id")
   private Project project;

@@ -1,7 +1,7 @@
 package com.tusofia.graduatesystem.controller;
 
 import com.tusofia.graduatesystem.model.entity.Project;
-import com.tusofia.graduatesystem.repository.ProjectRepository;
+import com.tusofia.graduatesystem.service.ProjectService;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class ProjectsController {
 
-  private final ProjectRepository projectRepository;
+  private final ProjectService projectService;
 
   @ApiResponses(
       value = {
@@ -34,6 +34,6 @@ public class ProjectsController {
       @PageableDefault(size = 20)
           @SortDefault.SortDefaults({@SortDefault(sort = "id", direction = Sort.Direction.ASC)})
           Pageable pageable) {
-    return projectRepository.findAllProjects(pageable);
+    return projectService.findAllProjects(pageable);
   }
 }

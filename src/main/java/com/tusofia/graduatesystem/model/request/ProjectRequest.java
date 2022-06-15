@@ -9,21 +9,29 @@ import lombok.Data;
 @Data
 public class ProjectRequest {
 
-  @NotNull private String studentFirstName;
+  @NotNull
+  private String studentFirstName;
 
-  @NotNull private String studentLastName;
+  @NotNull
+  private String studentLastName;
 
-  @NotNull private String studentSpecialty;
+  @NotNull
+  private String studentSpecialty;
 
-  @NotNull private Year graduationYear;
+  @NotNull
+  private Year graduationYear;
 
-  @NotNull private String title;
+  @NotNull
+  private String title;
 
-  @NotNull private String subject;
+  @NotNull
+  private String subject;
 
-  @NotNull private String description;
+  @NotNull
+  private String description;
 
-  @NotNull private String projectFileName;
+  @NotNull
+  private String projectFileName;
 
   @NotBlank
   @Size(max = 20)

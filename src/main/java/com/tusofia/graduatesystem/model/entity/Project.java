@@ -1,5 +1,6 @@
 package com.tusofia.graduatesystem.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.File;
 import java.time.Year;
 import java.util.Date;
@@ -51,6 +52,7 @@ public class Project {
   @JoinColumn(name = "mentor_id")
   private Mentor mentor;
 
+  @JsonManagedReference
   @OneToMany(mappedBy = "project")
   private List<Comment> comments;
 
