@@ -60,11 +60,16 @@ public class ProjectCriteriaRepository {
               projectRoot.get("studentLastName"),
               "%" + projectSearchCriteria.getStudentLastName() + "%"));
     }
+    if (Objects.nonNull(projectSearchCriteria.getTitle())) {
+      predicates.add(
+          criteriaBuilder.like(
+              projectRoot.get("title"),
+              "%" + projectSearchCriteria.getTitle() + "%"));
+    }
     return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
   }
 
-  private void setOrder(
-      ProjectPage projectPage, CriteriaQuery<Project> criteriaQuery, Root<Project> projectRoot) {
+  private void setOrder(ProjectPage projectPage, CriteriaQuery<Project> criteriaQuery, Root<Project> projectRoot) {
     final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
     if (projectPage.getSortDirection().equals(Sort.Direction.ASC)) {
       criteriaQuery.orderBy(criteriaBuilder.asc(projectRoot.get(projectPage.getSortBy())));

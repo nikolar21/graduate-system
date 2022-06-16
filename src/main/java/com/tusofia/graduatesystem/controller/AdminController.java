@@ -1,5 +1,6 @@
 package com.tusofia.graduatesystem.controller;
 
+import com.tusofia.graduatesystem.model.dto.UserDto;
 import com.tusofia.graduatesystem.model.entity.User;
 import com.tusofia.graduatesystem.model.request.RegistrationRequest;
 import com.tusofia.graduatesystem.model.response.MessageResponse;
@@ -7,8 +8,10 @@ import com.tusofia.graduatesystem.service.UserService;
 import com.tusofia.graduatesystem.service.impl.RegistrationServiceImpl;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import java.util.List;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -32,45 +35,48 @@ public class AdminController {
 
   private final RegistrationServiceImpl registrationService;
   private final UserService userService;
+  private final ModelMapper modelMapper = new ModelMapper();
 
   @ApiResponses(
       value = {
-        @ApiResponse(code = 400, message = "Username or Email already taken"),
-        @ApiResponse(
-            code = 200,
-            message = "Successful registration",
-            response = MessageResponse.class,
-            responseContainer = "List")
+          @ApiResponse(code = 400, message = "Username or Email already taken"),
+          @ApiResponse(
+              code = 200,
+              message = "Successful registration",
+              response = MessageResponse.class,
+              responseContainer = "List")
       })
   @PostMapping("/users")
-  public ResponseEntity<MessageResponse> registerUser(
-      @Valid @RequestBody RegistrationRequest signUpRequest) {
+  public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody RegistrationRequest signUpRequest) {
     return registrationService.userRegistration(signUpRequest);
   }
 
   @ApiResponses(
       value = {
-        @ApiResponse(
-            code = 200,
-            message = "List of all users",
-            response = User.class,
-            responseContainer = "List")
+          @ApiResponse(
+              code = 200,
+              message = "List of all users",
+              response = User.class,
+              responseContainer = "List")
       })
   @GetMapping("/users")
-  public Page<User> getAllUsers(
-      @PageableDefault(size = 20)
-          @SortDefault.SortDefaults({@SortDefault(sort = "id", direction = Sort.Direction.ASC)})
-          Pageable pageable) {
-    return userService.findAllUsers(pageable);
+  public ResponseEntity<List<UserDto>> getAllUsers(
+      @PageableDefault(size = 20) @SortDefault.SortDefaults({
+          @SortDefault(sort = "id", direction = Sort.Direction.ASC)}) Pageable pageable) {
+    Page<User> users = userService.findAllUsers(pageable);
+    Page<UserDto> dtoPage = users.map(user -> modelMapper.map(user, UserDto.class));
+    List<UserDto> userDto = dtoPage.getContent();
+
+    return ResponseEntity.ok().body(userDto);
   }
 
   @ApiResponses(
       value = {
-        @ApiResponse(
-            code = 200,
-            message = "User deleted successfully",
-            response = MessageResponse.class,
-            responseContainer = "List")
+          @ApiResponse(
+              code = 200,
+              message = "User deleted successfully",
+              response = MessageResponse.class,
+              responseContainer = "List")
       })
   @DeleteMapping("/users/{id}")
   public ResponseEntity<MessageResponse> deleteUser(@PathVariable Long id) {

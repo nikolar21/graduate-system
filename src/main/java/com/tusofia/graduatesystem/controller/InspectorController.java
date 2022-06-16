@@ -1,5 +1,6 @@
 package com.tusofia.graduatesystem.controller;
 
+import com.tusofia.graduatesystem.model.entity.Project;
 import com.tusofia.graduatesystem.model.request.ProjectRequest;
 import com.tusofia.graduatesystem.model.response.MessageResponse;
 import com.tusofia.graduatesystem.service.InspectorService;
@@ -7,7 +8,6 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +29,7 @@ public class InspectorController {
             responseContainer = "List")
       })
   @PostMapping("/projects")
-  public ResponseEntity<MessageResponse> addProject(@Valid @RequestBody ProjectRequest request) {
+  public Project addProject(@Valid @RequestBody ProjectRequest request) {
 
     return inspectorService.addProject(request);
   }

@@ -22,16 +22,15 @@ public class UserController {
 
   @ApiResponses(
       value = {
-        @ApiResponse(code = 400, message = "Username or Email already taken"),
-        @ApiResponse(
-            code = 200,
-            message = "Successful registration",
-            response = MessageResponse.class,
-            responseContainer = "List")
+          @ApiResponse(code = 400, message = "Username or Email already taken"),
+          @ApiResponse(
+              code = 200,
+              message = "Successful registration",
+              response = MessageResponse.class,
+              responseContainer = "List")
       })
   @PostMapping
-  public ResponseEntity<MessageResponse> registerUser(
-      @Valid @RequestBody RegistrationRequest signUpRequest) {
+  public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody RegistrationRequest signUpRequest) {
     return registrationService.basicUserRegistration(signUpRequest);
   }
 }

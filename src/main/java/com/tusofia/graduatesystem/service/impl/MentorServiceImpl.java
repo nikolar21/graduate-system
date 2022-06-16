@@ -7,7 +7,6 @@ import com.tusofia.graduatesystem.service.MentorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,16 +16,14 @@ public class MentorServiceImpl implements MentorService {
   private final MentorRepository mentorRepository;
 
   @Override
-  public ResponseEntity<Long> addMentor(MentorRequest request) {
+  public Mentor addMentor(MentorRequest request) {
     Mentor mentor = new Mentor();
     mentor.setFirstname(request.getMentorFirstName());
     mentor.setLastname(request.getMentorLastName());
     mentor.setFaculty(request.getMentorFaculty());
     mentor.setDisciplines(request.getMentorDiscipline());
 
-    Long savedMentorId = mentorRepository.save(mentor).getId();
-
-    return ResponseEntity.ok().body(savedMentorId);
+    return mentorRepository.save(mentor);
   }
 
   @Override

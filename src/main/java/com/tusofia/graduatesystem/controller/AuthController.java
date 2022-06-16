@@ -34,33 +34,29 @@ public class AuthController {
 
   @ApiResponses(
       value = {
-        @ApiResponse(code = 401, message = "Bad Credentials - Unathorized"),
-        @ApiResponse(
-            code = 200,
-            message = "Successful login",
-            response = JwtResponse.class,
-            responseContainer = "List")
+          @ApiResponse(code = 401, message = "Bad Credentials - Unathorized"),
+          @ApiResponse(
+              code = 200,
+              message = "Successful login",
+              response = JwtResponse.class,
+              responseContainer = "List")
       })
   @PostMapping("/login")
-  public ResponseEntity<JwtResponse> authenticateUser(
-      @Valid @RequestBody LoginRequest loginRequest) {
+  public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
     Authentication authentication =
         authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(
-                loginRequest.getUsername(), loginRequest.getPassword()));
+            new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
     SecurityContextHolder.getContext().setAuthentication(authentication);
     String jwt = jwtUtils.generateJwtToken(authentication);
 
     CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-    List<String> roles =
-        userDetails.getAuthorities().stream()
-            .map(GrantedAuthority::getAuthority)
-            .collect(Collectors.toList());
+    List<String> roles = userDetails.getAuthorities()
+        .stream()
+        .map(GrantedAuthority::getAuthority)
+        .collect(Collectors.toList());
 
-    return ResponseEntity.ok(
-        new JwtResponse(
-            jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
+    return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
   }
 }

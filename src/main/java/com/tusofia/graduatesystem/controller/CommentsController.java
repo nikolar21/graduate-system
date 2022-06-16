@@ -1,5 +1,6 @@
 package com.tusofia.graduatesystem.controller;
 
+import com.tusofia.graduatesystem.model.entity.Comment;
 import com.tusofia.graduatesystem.model.request.CommentRequest;
 import com.tusofia.graduatesystem.model.response.MessageResponse;
 import com.tusofia.graduatesystem.service.CommentService;
@@ -21,8 +22,7 @@ public class CommentsController {
   private final CommentService commentService;
 
   @PostMapping
-  public ResponseEntity<MessageResponse> addComment(
-      @Valid @RequestBody CommentRequest commentRequest) {
+  public Comment addComment(@Valid @RequestBody CommentRequest commentRequest) {
     return commentService.addComment(commentRequest);
   }
 

@@ -1,6 +1,6 @@
 package com.tusofia.graduatesystem.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -43,7 +43,7 @@ public class Mentor {
   @Size(max = 20)
   private String disciplines;
 
-  @JsonManagedReference
+  @JsonBackReference
   @OneToMany(mappedBy = "mentor")
   private List<Project> projects;
 

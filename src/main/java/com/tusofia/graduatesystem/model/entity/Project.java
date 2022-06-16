@@ -1,9 +1,7 @@
 package com.tusofia.graduatesystem.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.File;
-import java.time.Year;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -16,6 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -37,7 +38,10 @@ public class Project {
 
   private String studentSpecialty;
 
-  private Year graduationYear;
+  @NotNull(message = "Please, provide year of production!")
+  @Min(value = 1800)
+  @Max(value = 2022)
+  private Integer graduationYear;
 
   private String title;
 
@@ -49,7 +53,7 @@ public class Project {
 
   private File file;
 
-  @JsonBackReference
+  @JsonManagedReference
   @ManyToOne
   @JoinColumn(name = "mentor_id")
   private Mentor mentor;

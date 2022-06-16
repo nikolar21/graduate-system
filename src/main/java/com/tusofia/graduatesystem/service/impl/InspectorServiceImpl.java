@@ -1,25 +1,23 @@
 package com.tusofia.graduatesystem.service.impl;
 
-import com.tusofia.graduatesystem.model.entity.Mentor;
+import com.tusofia.graduatesystem.exceptions.MentorNotFoundException;
 import com.tusofia.graduatesystem.model.entity.Project;
 import com.tusofia.graduatesystem.model.request.ProjectRequest;
-import com.tusofia.graduatesystem.model.response.MessageResponse;
 import com.tusofia.graduatesystem.repository.MentorRepository;
 import com.tusofia.graduatesystem.repository.ProjectRepository;
 import com.tusofia.graduatesystem.service.InspectorService;
-import java.util.Optional;
+import java.text.MessageFormat;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class InspectorServiceImpl implements InspectorService {
+
   private final ProjectRepository projectRepository;
   private final MentorRepository mentorRepository;
 
-  public ResponseEntity<MessageResponse> addProject(ProjectRequest request) {
-
+  public Project addProject(ProjectRequest request) {
     Project project = new Project();
     project.setStudentFirstName(request.getStudent().getFirstName());
     project.setStudentLastName(request.getStudent().getLastName());
@@ -31,12 +29,9 @@ public class InspectorServiceImpl implements InspectorService {
     project.setDescription(request.getDescription());
     project.setProjectFileName(request.getProjectFileName());
 
-    Optional<Mentor> mentor = mentorRepository.findById(request.getMentorId());
+    project.setMentor(mentorRepository.findById(request.getMentorId()).orElseThrow(() ->
+        new MentorNotFoundException(MessageFormat.format("Mentor with id {0} not found!", request.getMentorId()))));
 
-    mentor.ifPresent(project::setMentor);
-
-    projectRepository.save(project);
-
-    return ResponseEntity.ok(new MessageResponse("Successfully added new project!"));
+    return projectRepository.save(project);
   }
 }
