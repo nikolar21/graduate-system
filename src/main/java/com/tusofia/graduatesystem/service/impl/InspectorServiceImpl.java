@@ -1,6 +1,8 @@
 package com.tusofia.graduatesystem.service.impl;
 
-import com.tusofia.graduatesystem.exceptions.MentorNotFoundException;
+import static com.tusofia.graduatesystem.util.Constants.MENTOR_NOT_FOUND_MESSAGE;
+
+import com.tusofia.graduatesystem.exception.EntityNotFoundException;
 import com.tusofia.graduatesystem.model.entity.Project;
 import com.tusofia.graduatesystem.model.request.ProjectRequest;
 import com.tusofia.graduatesystem.repository.MentorRepository;
@@ -24,13 +26,13 @@ public class InspectorServiceImpl implements InspectorService {
     project.setStudentSpecialty(request.getStudent().getSpecialty());
     project.setGraduationYear(request.getStudent().getGraduationYear());
 
-    project.setTitle(request.getTitle());
-    project.setSubject(request.getSubject());
-    project.setDescription(request.getDescription());
-    project.setProjectFileName(request.getProjectFileName());
+    project.setProjectType(request.getType());
+    project.setProjectTitle(request.getTitle());
+    project.setProjectSubject(request.getSubject());
+    project.setProjectDescription(request.getDescription());
 
     project.setMentor(mentorRepository.findById(request.getMentorId()).orElseThrow(() ->
-        new MentorNotFoundException(MessageFormat.format("Mentor with id {0} not found!", request.getMentorId()))));
+        new EntityNotFoundException(MessageFormat.format(MENTOR_NOT_FOUND_MESSAGE, request.getMentorId()))));
 
     return projectRepository.save(project);
   }

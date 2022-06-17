@@ -1,6 +1,8 @@
 package com.tusofia.graduatesystem.service.impl;
 
-import com.tusofia.graduatesystem.exceptions.UserNotFoundException;
+import static com.tusofia.graduatesystem.util.Constants.USER_NOT_FOUND_MESSAGE;
+
+import com.tusofia.graduatesystem.exception.EntityNotFoundException;
 import com.tusofia.graduatesystem.model.entity.User;
 import com.tusofia.graduatesystem.model.response.MessageResponse;
 import com.tusofia.graduatesystem.repository.UserRepository;
@@ -26,7 +28,7 @@ public class UserServiceImpl implements UserService {
   @Override
   public ResponseEntity<MessageResponse> deleteUserById(Long id) {
     userRepository.findById(id)
-        .orElseThrow(() -> new UserNotFoundException(MessageFormat.format("User with id {0} not found!", id)));
+        .orElseThrow(() -> new EntityNotFoundException(MessageFormat.format(USER_NOT_FOUND_MESSAGE, id)));
 
     userRepository.deleteById(id);
     return ResponseEntity.ok(new MessageResponse("User deleted successfully"));

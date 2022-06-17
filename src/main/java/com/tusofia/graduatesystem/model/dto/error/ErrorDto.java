@@ -1,21 +1,18 @@
-package com.tusofia.graduatesystem.model.dto;
+package com.tusofia.graduatesystem.model.dto.error;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.springframework.http.HttpStatus;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(Include.NON_EMPTY)
-public class MentorDto {
+public class ErrorDto {
 
-  private String firstname;
-  private String lastname;
-  private String faculty;
-  private String disciplines;
+  private HttpStatus status;
+  private String message;
 }

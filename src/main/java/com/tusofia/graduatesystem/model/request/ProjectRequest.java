@@ -14,6 +14,9 @@ public class ProjectRequest {
   private StudentRequest student;
 
   @NotNull
+  private String type;
+
+  @NotNull
   private String title;
 
   @NotNull
@@ -21,7 +24,4 @@ public class ProjectRequest {
 
   @NotNull
   private String description;
-
-  @NotNull
-  private String projectFileName;
 }

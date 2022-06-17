@@ -1,5 +1,7 @@
 package com.tusofia.graduatesystem.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.tusofia.graduatesystem.model.entity.Role;
 import java.time.LocalDate;
 import java.util.Date;
@@ -13,6 +15,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(Include.NON_EMPTY)
 public class UserDto {
 
   private Long id;

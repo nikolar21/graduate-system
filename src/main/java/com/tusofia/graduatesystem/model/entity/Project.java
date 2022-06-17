@@ -1,7 +1,6 @@
 package com.tusofia.graduatesystem.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import java.io.File;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -43,15 +42,15 @@ public class Project {
   @Max(value = 2022)
   private Integer graduationYear;
 
-  private String title;
+  private String projectType;
 
-  private String subject;
+  private String projectTitle;
 
-  private String description;
+  private String projectSubject;
+
+  private String projectDescription;
 
   private String projectFileName;
-
-  private File file;
 
   @JsonManagedReference
   @ManyToOne
