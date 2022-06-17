@@ -78,8 +78,8 @@ public class AdminController {
               response = MessageResponse.class,
               responseContainer = "List")
       })
-  @DeleteMapping("/users/{id}")
-  public ResponseEntity<MessageResponse> deleteUser(@PathVariable Long id) {
-    return userService.deleteUserById(id);
+  @DeleteMapping("/users/{userId}")
+  public ResponseEntity<MessageResponse> deleteUser(@PathVariable Long userId) {
+    return userService.deleteUserById(userId);
   }
 }

@@ -42,9 +42,9 @@ public class InspectorController {
   }
 
   @PostMapping("/projects/upload")
-  public ResponseEntity<FileUploadResponse> uploadFile(@RequestParam("file") MultipartFile multipartFile, Long id) {
+  public ResponseEntity<FileUploadResponse> uploadFile(@RequestParam("file") MultipartFile multipartFile, Long projectId) {
 
-    FileUploadResponse response = projectService.projectUpload(multipartFile, id);
+    FileUploadResponse response = projectService.projectUpload(multipartFile, projectId);
 
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
