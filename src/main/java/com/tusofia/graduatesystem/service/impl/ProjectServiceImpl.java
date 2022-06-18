@@ -5,6 +5,7 @@ import static com.tusofia.graduatesystem.util.Constants.PROJECT_NOT_FOUND_MESSAG
 import com.tusofia.graduatesystem.exception.EntityNotFoundException;
 import com.tusofia.graduatesystem.model.entity.Project;
 import com.tusofia.graduatesystem.model.response.FileUploadResponse;
+import com.tusofia.graduatesystem.model.response.MessageResponse;
 import com.tusofia.graduatesystem.repository.ProjectRepository;
 import com.tusofia.graduatesystem.repository.pagination.ProjectCriteriaRepository;
 import com.tusofia.graduatesystem.repository.pagination.ProjectPage;
@@ -31,7 +32,13 @@ public class ProjectServiceImpl implements ProjectService {
     return projectCriteriaRepository.findAllWithFilters(projectPage, employeeSearchCriteria);
   }
 
-  public FileUploadResponse projectUpload(MultipartFile multipartFile, Long id) {
+  @Override
+  public Project getProjectById(Long projectId) {
+    return projectRepository.findById(projectId).orElseThrow(() -> new EntityNotFoundException(
+        MessageFormat.format(PROJECT_NOT_FOUND_MESSAGE, projectId)));
+  }
+
+  public FileUploadResponse projectUpload(MultipartFile multipartFile, Long projectId) {
     String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
     long size = multipartFile.getSize();
     String filecode = null;
@@ -46,12 +53,22 @@ public class ProjectServiceImpl implements ProjectService {
     response.setSize(size);
     response.setDownloadUri("/downloadFile/" + filecode);
 
-    Project project = projectRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(
-        MessageFormat.format(PROJECT_NOT_FOUND_MESSAGE, id)));
+    Project project = projectRepository.findById(projectId).orElseThrow(() -> new EntityNotFoundException(
+        MessageFormat.format(PROJECT_NOT_FOUND_MESSAGE, projectId)));
 
     project.setProjectFileName(Objects.requireNonNull(filecode).concat(fileName));
     projectRepository.save(project);
 
     return response;
+  }
+
+  @Override
+  public MessageResponse deleteProject(Long projectId) {
+    projectRepository.findById(projectId).ifPresentOrElse(projectRepository::delete,
+        () -> {
+          throw new EntityNotFoundException(MessageFormat.format(PROJECT_NOT_FOUND_MESSAGE, projectId));
+        });
+
+    return new MessageResponse("Project deleted successfully!");
   }
 }

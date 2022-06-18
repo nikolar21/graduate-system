@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,5 +30,12 @@ public class ProjectsController {
     List<ProjectDto> projectDto = dtoPage.getContent();
 
     return ResponseEntity.ok().body(projectDto);
+  }
+
+  @GetMapping("/{projectId}")
+  public ResponseEntity<ProjectDto> getProject(@PathVariable Long projectId) {
+    Project project = projectService.getProjectById(projectId);
+
+    return ResponseEntity.ok().body(modelMapper.map(project, ProjectDto.class));
   }
 }

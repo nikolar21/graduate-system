@@ -22,6 +22,7 @@ public class ProjectDto {
   private Integer graduationYear;
   private String title;
   private String subject;
+  private String type;
   private String description;
   private String projectFileName;
   private MentorDto mentor;
