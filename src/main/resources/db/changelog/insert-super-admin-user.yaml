@@ -7,7 +7,7 @@ databaseChangeLog:
           columns:
             - column:
                 name: id
-                value: "1"
+                value: "999"
             - column:
                 name: firstname
                 value: "Super"
@@ -38,7 +38,7 @@ databaseChangeLog:
           columns:
             - column:
                 name: user_id
-                value: "1"
+                value: "999"
             - column:
                 name: role_id
                 value: "1"
