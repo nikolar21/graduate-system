@@ -20,6 +20,9 @@ public class StudentRequest {
   @NotNull
   private String specialty;
 
+  @NotNull
+  private String educationalDegree;
+
   @NotNull(message = "Please, provide year of production!")
   @Min(value = 1800)
   @Max(value = 2022)

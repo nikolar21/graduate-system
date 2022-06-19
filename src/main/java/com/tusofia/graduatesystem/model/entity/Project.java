@@ -41,6 +41,8 @@ public class Project {
 
   private String studentSpecialty;
 
+  private String studentEducationalDegree;
+
   @NotNull(message = "Please, provide year of production!")
   @Min(value = 1800)
   @Max(value = 2022)

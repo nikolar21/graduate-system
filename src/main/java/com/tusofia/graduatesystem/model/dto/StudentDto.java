@@ -18,5 +18,6 @@ public class StudentDto {
   private String lastName;
   private String faculty;
   private String specialty;
+  private String educationalDegree;
   private Integer graduationYear;
 }
