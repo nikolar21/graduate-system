@@ -17,7 +17,7 @@ import lombok.Setter;
 public class ProjectDto {
 
   private Long id;
-  private String title;
+  private String topic;
   private String subject;
   private String type;
   private String description;

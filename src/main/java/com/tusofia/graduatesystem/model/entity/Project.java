@@ -41,6 +41,10 @@ public class Project {
 
   private String studentSpecialty;
 
+  private String studentFacultyGroup;
+
+  private String studentFacultyNumber;
+
   private String studentEducationalDegree;
 
   @NotNull(message = "Please, provide year of production!")
@@ -50,7 +54,7 @@ public class Project {
 
   private String projectType;
 
-  private String projectTitle;
+  private String projectTopic;
 
   private String projectSubject;
 

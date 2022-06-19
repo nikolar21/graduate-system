@@ -21,6 +21,12 @@ public class StudentRequest {
   private String specialty;
 
   @NotNull
+  private String facultyGroup;
+
+  @NotNull
+  private String facultyNumber;
+
+  @NotNull
   private String educationalDegree;
 
   @NotNull(message = "Please, provide year of production!")

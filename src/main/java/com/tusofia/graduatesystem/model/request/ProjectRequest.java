@@ -17,7 +17,7 @@ public class ProjectRequest {
   private String type;
 
   @NotNull
-  private String title;
+  private String topic;
 
   @NotNull
   private String subject;

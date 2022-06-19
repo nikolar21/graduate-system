@@ -25,11 +25,13 @@ public class InspectorServiceImpl implements InspectorService {
     project.setStudentLastName(request.getStudent().getLastName());
     project.setStudentFaculty(request.getStudent().getFaculty());
     project.setStudentSpecialty(request.getStudent().getSpecialty());
+    project.setStudentFacultyGroup(request.getStudent().getFacultyGroup());
+    project.setStudentFacultyNumber(request.getStudent().getFacultyNumber());
     project.setStudentEducationalDegree(request.getStudent().getEducationalDegree());
     project.setStudentGraduationYear(request.getStudent().getGraduationYear());
 
     project.setProjectType(request.getType());
-    project.setProjectTitle(request.getTitle());
+    project.setProjectTopic(request.getTopic());
     project.setProjectSubject(request.getSubject());
     project.setProjectDescription(request.getDescription());
 
