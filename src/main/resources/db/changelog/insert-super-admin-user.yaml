@@ -1,0 +1,47 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: nikolar21
+    changes:
+      - insert:
+          columns:
+            - column:
+                name: id
+                value: "1"
+            - column:
+                name: firstname
+                value: "Super"
+            - column:
+                name: lastname
+                value: "Admin"
+            - column:
+                name: username
+                value: "superadmin"
+            - column:
+                name: email
+                value: "superadmin@gmail.com"
+            - column:
+                name: password
+                value: "$2a$10$rBAAMPy5I4f6yfbA4UyEzuvofhg/Ohj5xqw.1gOk7n7eZFtvrlQDi"
+            - column:
+                name: birth_date
+                value: "1998-05-29"
+            - column:
+                name: create_date
+                value: "2022-06-19T13:09:15.762+00:00"
+            - column:
+                name: modify_date
+                value: "2022-06-19T13:09:15.762+00:00"
+          schemaName: public
+          tableName: users
+      - insert:
+          columns:
+            - column:
+                name: user_id
+                value: "1"
+            - column:
+                name: role_id
+                value: "1"
+          schemaName: public
+          tableName: user_roles
+

@@ -1,0 +1,35 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: nikolar21
+    changes:
+      - insert:
+          columns:
+            - column:
+                name: id
+                value: "1"
+            - column:
+                name: name
+                value: "ROLE_ADMIN"
+          schemaName: public
+          tableName: roles
+      - insert:
+          columns:
+            - column:
+                name: id
+                value: "2"
+            - column:
+                name: name
+                value: "ROLE_INSPECTOR"
+          schemaName: public
+          tableName: roles
+      - insert:
+          columns:
+            - column:
+                name: id
+                value: "3"
+            - column:
+                name: name
+                value: "ROLE_USER"
+          schemaName: public
+          tableName: roles
