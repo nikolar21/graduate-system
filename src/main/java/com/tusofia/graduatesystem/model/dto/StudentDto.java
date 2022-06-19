@@ -12,12 +12,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(Include.NON_EMPTY)
-public class MentorDto {
+public class StudentDto {
 
-  private Long id;
-  private String firstname;
-  private String lastname;
-  private String title;
+  private String firstName;
+  private String lastName;
   private String faculty;
-  private String disciplines;
+  private String specialty;
+  private Integer graduationYear;
 }

@@ -10,4 +10,6 @@ public interface MentorService {
   Mentor addMentor(MentorRequest request);
 
   Page<Mentor> findAllMentors(Pageable pageable);
+
+  Mentor getMentorById(Long mentorId);
 }

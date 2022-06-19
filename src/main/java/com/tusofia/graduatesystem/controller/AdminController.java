@@ -4,8 +4,8 @@ import com.tusofia.graduatesystem.model.dto.UserDto;
 import com.tusofia.graduatesystem.model.entity.User;
 import com.tusofia.graduatesystem.model.request.RegistrationRequest;
 import com.tusofia.graduatesystem.model.response.MessageResponse;
+import com.tusofia.graduatesystem.service.RegistrationService;
 import com.tusofia.graduatesystem.service.UserService;
-import com.tusofia.graduatesystem.service.impl.RegistrationServiceImpl;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import java.util.List;
@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AdminController {
 
-  private final RegistrationServiceImpl registrationService;
+  private final RegistrationService registrationService;
   private final UserService userService;
   private final ModelMapper modelMapper = new ModelMapper();
 
@@ -80,6 +80,8 @@ public class AdminController {
       })
   @DeleteMapping("/users/{userId}")
   public ResponseEntity<MessageResponse> deleteUser(@PathVariable Long userId) {
-    return userService.deleteUserById(userId);
+    return ResponseEntity
+        .ok()
+        .body(userService.deleteUserById(userId));
   }
 }

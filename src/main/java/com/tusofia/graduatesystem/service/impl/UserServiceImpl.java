@@ -11,7 +11,6 @@ import java.text.MessageFormat;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,11 +25,17 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public ResponseEntity<MessageResponse> deleteUserById(Long id) {
+  public MessageResponse deleteUserById(Long id) {
     userRepository.findById(id)
         .orElseThrow(() -> new EntityNotFoundException(MessageFormat.format(USER_NOT_FOUND_MESSAGE, id)));
 
     userRepository.deleteById(id);
-    return ResponseEntity.ok(new MessageResponse("User deleted successfully"));
+    return new MessageResponse("User deleted successfully");
+  }
+
+  @Override
+  public User getUserById(Long userId) {
+    return userRepository.findById(userId)
+        .orElseThrow(() -> new EntityNotFoundException(MessageFormat.format(USER_NOT_FOUND_MESSAGE, userId)));
   }
 }

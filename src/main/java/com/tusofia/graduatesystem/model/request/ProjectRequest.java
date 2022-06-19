@@ -24,4 +24,7 @@ public class ProjectRequest {
 
   @NotNull
   private String description;
+
+  @NotNull
+  private String commission;
 }

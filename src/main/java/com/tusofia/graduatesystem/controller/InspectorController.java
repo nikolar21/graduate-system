@@ -10,7 +10,6 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,11 +43,15 @@ public class InspectorController {
 
   @PostMapping("/projects/upload")
   public ResponseEntity<FileUploadResponse> uploadFile(@RequestParam("file") MultipartFile multipartFile, Long projectId) {
-    return new ResponseEntity<>(projectService.projectUpload(multipartFile, projectId), HttpStatus.OK);
+    return ResponseEntity
+        .ok()
+        .body(projectService.projectUpload(multipartFile, projectId));
   }
 
   @DeleteMapping("/projects/{projectId}")
   public ResponseEntity<MessageResponse> deleteProject(@PathVariable Long projectId) {
-    return new ResponseEntity<>(projectService.deleteProject(projectId), HttpStatus.OK);
+    return ResponseEntity
+        .ok()
+        .body(projectService.deleteProject(projectId));
   }
 }

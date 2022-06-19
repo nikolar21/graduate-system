@@ -38,6 +38,10 @@ public class Mentor {
 
   @NotBlank
   @Size(max = 20)
+  private String title;
+
+  @NotBlank
+  @Size(max = 20)
   private String faculty;
 
   @Size(max = 20)

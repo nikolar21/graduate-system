@@ -16,16 +16,15 @@ import lombok.Setter;
 @JsonInclude(Include.NON_EMPTY)
 public class ProjectDto {
 
-  private String studentFirstName;
-  private String studentLastName;
-  private String studentSpecialty;
-  private Integer graduationYear;
+  private Long id;
   private String title;
   private String subject;
   private String type;
   private String description;
   private String projectFileName;
+  private StudentDto student;
   private MentorDto mentor;
+  private String commission;
   private List<CommentDto> comments;
   private Date createDate;
   private Date modifyDate;

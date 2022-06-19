@@ -3,7 +3,9 @@ package com.tusofia.graduatesystem.model.entity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,12 +37,14 @@ public class Project {
 
   private String studentLastName;
 
+  private String studentFaculty;
+
   private String studentSpecialty;
 
   @NotNull(message = "Please, provide year of production!")
   @Min(value = 1800)
   @Max(value = 2022)
-  private Integer graduationYear;
+  private Integer studentGraduationYear;
 
   private String projectType;
 
@@ -52,13 +56,15 @@ public class Project {
 
   private String projectFileName;
 
+  private String commission;
+
   @JsonManagedReference
   @ManyToOne
   @JoinColumn(name = "mentor_id")
   private Mentor mentor;
 
   @JsonManagedReference
-  @OneToMany(mappedBy = "project")
+  @OneToMany(mappedBy = "project", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Comment> comments;
 
   @CreationTimestamp

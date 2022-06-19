@@ -35,14 +35,15 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Table(
     name = "users",
     uniqueConstraints = {
-      @UniqueConstraint(columnNames = "username"),
-      @UniqueConstraint(columnNames = "email")
+        @UniqueConstraint(columnNames = "username"),
+        @UniqueConstraint(columnNames = "email")
     })
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

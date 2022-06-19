@@ -17,6 +17,10 @@ public class MentorRequest {
 
   @NotNull
   @Size(max = 20)
+  private String mentorTitle;
+
+  @NotNull
+  @Size(max = 20)
   private String mentorFaculty;
 
   @NotNull

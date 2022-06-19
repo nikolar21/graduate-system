@@ -15,6 +15,7 @@ import lombok.Setter;
 @JsonInclude(Include.NON_EMPTY)
 public class CommentDto {
 
+  private Long id;
   private String comment;
   private UserDto user;
   private Date createDate;
