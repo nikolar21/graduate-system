@@ -51,7 +51,7 @@ public class ProjectServiceImpl implements ProjectService {
     FileUploadResponse response = new FileUploadResponse();
     response.setFileName(fileName);
     response.setSize(size);
-    response.setDownloadUri("/downloadFile/" + filecode);
+    response.setDownloadUri("/projects/download/" + filecode);
 
     Project project = projectRepository.findById(projectId).orElseThrow(() -> new EntityNotFoundException(
         MessageFormat.format(PROJECT_NOT_FOUND_MESSAGE, projectId)));
