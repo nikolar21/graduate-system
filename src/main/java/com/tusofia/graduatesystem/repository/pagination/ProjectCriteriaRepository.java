@@ -60,11 +60,11 @@ public class ProjectCriteriaRepository {
               projectRoot.get("studentLastName"),
               "%" + projectSearchCriteria.getStudentLastName() + "%"));
     }
-    if (Objects.nonNull(projectSearchCriteria.getTitle())) {
+    if (Objects.nonNull(projectSearchCriteria.getTopic())) {
       predicates.add(
           criteriaBuilder.like(
-              projectRoot.get("title"),
-              "%" + projectSearchCriteria.getTitle() + "%"));
+              projectRoot.get("topic"),
+              "%" + projectSearchCriteria.getTopic() + "%"));
     }
     return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
   }

@@ -7,5 +7,5 @@ public class ProjectSearchCriteria {
 
   private String studentFirstName;
   private String studentLastName;
-  private String title;
+  private String topic;
 }
