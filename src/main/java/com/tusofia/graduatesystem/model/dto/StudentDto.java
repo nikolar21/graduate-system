@@ -14,8 +14,8 @@ import lombok.Setter;
 @JsonInclude(Include.NON_EMPTY)
 public class StudentDto {
 
-  private String firstName;
-  private String lastName;
+  private String firstname;
+  private String lastname;
   private String faculty;
   private String specialty;
   private String facultyGroup;
