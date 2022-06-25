@@ -17,17 +17,17 @@ databaseChangeLog:
             name: comment
             type: VARCHAR(255)
         - column:
-            name: create_date
-            type: TIMESTAMP WITHOUT TIME ZONE
-        - column:
-            name: modify_date
-            type: TIMESTAMP WITHOUT TIME ZONE
-        - column:
             name: project_id
             type: BIGINT
         - column:
             name: user_id
             type: BIGINT
+        - column:
+            name: create_date
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: modify_date
+            type: TIMESTAMP WITHOUT TIME ZONE
         tableName: comment
     - createTable:
         columns:
@@ -40,26 +40,26 @@ databaseChangeLog:
             name: id
             type: BIGINT
         - column:
-            name: create_date
-            type: TIMESTAMP WITHOUT TIME ZONE
-        - column:
-            name: disciplines
-            type: VARCHAR(20)
-        - column:
-            name: faculty
-            type: VARCHAR(20)
-        - column:
             name: firstname
             type: VARCHAR(20)
         - column:
             name: lastname
             type: VARCHAR(20)
         - column:
-            name: modify_date
-            type: TIMESTAMP WITHOUT TIME ZONE
-        - column:
             name: title
             type: VARCHAR(20)
+        - column:
+            name: faculty
+            type: VARCHAR(20)
+        - column:
+            name: disciplines
+            type: VARCHAR(20)
+        - column:
+            name: create_date
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: modify_date
+            type: TIMESTAMP WITHOUT TIME ZONE
         tableName: mentor
     - createTable:
         columns:
@@ -72,23 +72,31 @@ databaseChangeLog:
             name: id
             type: BIGINT
         - column:
-            name: commission
-            type: VARCHAR(255)
+              name: student_first_name
+              type: VARCHAR(255)
         - column:
-            name: create_date
-            type: TIMESTAMP WITHOUT TIME ZONE
+              name: student_last_name
+              type: VARCHAR(255)
         - column:
-            name: modify_date
-            type: TIMESTAMP WITHOUT TIME ZONE
+              name: student_educational_degree
+              type: VARCHAR(255)
         - column:
-            name: project_description
-            type: VARCHAR(255)
+              name: student_faculty
+              type: VARCHAR(255)
         - column:
-            name: project_file_name
-            type: VARCHAR(255)
+              name: student_specialty
+              type: VARCHAR(255)
         - column:
-            name: project_subject
-            type: VARCHAR(255)
+              name: student_faculty_group
+              type: VARCHAR(255)
+        - column:
+              name: student_faculty_number
+              type: VARCHAR(255)
+        - column:
+              constraints:
+                  nullable: false
+              name: student_graduation_year
+              type: INTEGER
         - column:
             name: project_topic
             type: VARCHAR(255)
@@ -96,34 +104,32 @@ databaseChangeLog:
             name: project_type
             type: VARCHAR(255)
         - column:
-            name: student_educational_degree
+            name: project_subject
             type: VARCHAR(255)
         - column:
-            name: student_faculty
+            name: project_description
+            type: VARCHAR(25555)
+        - column:
+            name: project_file_name
             type: VARCHAR(255)
         - column:
-            name: student_faculty_group
-            type: VARCHAR(255)
+              name: commission
+              type: VARCHAR(255)
         - column:
-            name: student_faculty_number
-            type: VARCHAR(255)
+              name: reviewer
+              type: VARCHAR(255)
         - column:
-            name: student_first_name
-            type: VARCHAR(255)
-        - column:
-            constraints:
-              nullable: false
-            name: student_graduation_year
-            type: INTEGER
-        - column:
-            name: student_last_name
-            type: VARCHAR(255)
-        - column:
-            name: student_specialty
-            type: VARCHAR(255)
+              name: review
+              type: VARCHAR(25555)
         - column:
             name: mentor_id
             type: BIGINT
+        - column:
+              name: create_date
+              type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+              name: modify_date
+              type: TIMESTAMP WITHOUT TIME ZONE
         tableName: project
     - createTable:
         columns:
@@ -150,6 +156,21 @@ databaseChangeLog:
             name: id
             type: BIGINT
         - column:
+            name: firstname
+            type: VARCHAR(20)
+        - column:
+            name: lastname
+            type: VARCHAR(20)
+        - column:
+            name: username
+            type: VARCHAR(20)
+        - column:
+            name: email
+            type: VARCHAR(50)
+        - column:
+            name: password
+            type: VARCHAR(120)
+        - column:
             constraints:
               nullable: false
             name: birth_date
@@ -158,23 +179,8 @@ databaseChangeLog:
             name: create_date
             type: TIMESTAMP WITHOUT TIME ZONE
         - column:
-            name: email
-            type: VARCHAR(50)
-        - column:
-            name: firstname
-            type: VARCHAR(20)
-        - column:
-            name: lastname
-            type: VARCHAR(20)
-        - column:
             name: modify_date
             type: TIMESTAMP WITHOUT TIME ZONE
-        - column:
-            name: password
-            type: VARCHAR(120)
-        - column:
-            name: username
-            type: VARCHAR(20)
         tableName: users
     - addUniqueConstraint:
         columnNames: email
