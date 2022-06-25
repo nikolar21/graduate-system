@@ -36,6 +36,8 @@ public class InspectorServiceImpl implements InspectorService {
     project.setProjectDescription(request.getDescription());
 
     project.setCommission(request.getCommission());
+    project.setReviewer(request.getReviewer());
+    project.setReview(request.getReview());
 
     project.setMentor(mentorRepository.findById(request.getMentorId()).orElseThrow(() ->
         new EntityNotFoundException(MessageFormat.format(MENTOR_NOT_FOUND_MESSAGE, request.getMentorId()))));

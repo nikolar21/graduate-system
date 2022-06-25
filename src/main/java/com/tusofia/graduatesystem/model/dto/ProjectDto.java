@@ -25,6 +25,8 @@ public class ProjectDto {
   private StudentDto student;
   private MentorDto mentor;
   private String commission;
+  private String reviewer;
+  private String review;
   private List<CommentDto> comments;
   private Date createDate;
   private Date modifyDate;

@@ -64,6 +64,10 @@ public class Project {
 
   private String commission;
 
+  private String reviewer;
+
+  private String review;
+
   @JsonManagedReference
   @ManyToOne
   @JoinColumn(name = "mentor_id")

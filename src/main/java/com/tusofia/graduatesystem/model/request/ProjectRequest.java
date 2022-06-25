@@ -27,4 +27,10 @@ public class ProjectRequest {
 
   @NotNull
   private String commission;
+
+  @NotNull
+  private String reviewer;
+
+  @NotNull
+  private String review;
 }
