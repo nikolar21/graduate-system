@@ -6,8 +6,6 @@ import com.tusofia.graduatesystem.model.response.FileUploadResponse;
 import com.tusofia.graduatesystem.model.response.MessageResponse;
 import com.tusofia.graduatesystem.service.InspectorService;
 import com.tusofia.graduatesystem.service.ProjectService;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -28,14 +26,7 @@ public class InspectorController {
   private final InspectorService inspectorService;
   private final ProjectService projectService;
 
-  @ApiResponses(
-      value = {
-          @ApiResponse(
-              code = 200,
-              message = "Successfully added project",
-              response = MessageResponse.class,
-              responseContainer = "List")
-      })
+
   @PostMapping("/projects")
   public Project addProject(@Valid @RequestBody ProjectRequest request) {
     return inspectorService.addProject(request);

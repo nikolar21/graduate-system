@@ -34,17 +34,11 @@ public class Project {
   private Long id;
 
   private String studentFirstName;
-
   private String studentLastName;
-
   private String studentFaculty;
-
   private String studentSpecialty;
-
   private String studentFacultyGroup;
-
   private String studentFacultyNumber;
-
   private String studentEducationalDegree;
 
   @NotNull(message = "Please, provide year of production!")
@@ -53,19 +47,12 @@ public class Project {
   private Integer studentGraduationYear;
 
   private String projectType;
-
   private String projectTopic;
-
   private String projectSubject;
-
   private String projectDescription;
-
   private String projectFileName;
-
   private String commission;
-
   private String reviewer;
-
   private String review;
 
   @JsonManagedReference

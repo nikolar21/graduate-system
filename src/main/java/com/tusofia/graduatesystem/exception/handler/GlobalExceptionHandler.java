@@ -3,7 +3,7 @@ package com.tusofia.graduatesystem.exception.handler;
 import com.tusofia.graduatesystem.config.ObjectErrorConverter;
 import com.tusofia.graduatesystem.exception.EntityNotFoundException;
 import com.tusofia.graduatesystem.model.dto.error.ErrorDto;
-import java.util.List;
+import com.tusofia.graduatesystem.model.dto.error.ValidationErrorDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,13 +19,14 @@ public class GlobalExceptionHandler {
   private final ObjectErrorConverter objectErrorConverter;
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
-  public ResponseEntity<List<String>> handleException(MethodArgumentNotValidException e) {
+  public ResponseEntity<ValidationErrorDto> handleException(MethodArgumentNotValidException e) {
     var errors = e.getBindingResult()
         .getAllErrors()
         .stream()
         .map(objectErrorConverter::convert)
         .toList();
-    return ResponseEntity.badRequest().body(errors);
+    ValidationErrorDto validationErrorDto = new ValidationErrorDto(HttpStatus.BAD_REQUEST, errors);
+    return new ResponseEntity<>(validationErrorDto, new HttpHeaders(), validationErrorDto.getStatus());
   }
 
   @ExceptionHandler(EntityNotFoundException.class)
