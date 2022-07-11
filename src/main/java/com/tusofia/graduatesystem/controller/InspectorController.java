@@ -8,7 +8,6 @@ import com.tusofia.graduatesystem.service.InspectorService;
 import com.tusofia.graduatesystem.service.ProjectService;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,7 +34,7 @@ public class InspectorController {
     return inspectorService.addProject(request);
   }
 
-  @PostMapping(value = "/projects/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+  @PostMapping(value = "/projects/upload")
   public ResponseEntity<FileUploadResponse> uploadFile(@RequestParam("file") MultipartFile multipartFile, Long projectId) {
     return ResponseEntity
         .ok()
