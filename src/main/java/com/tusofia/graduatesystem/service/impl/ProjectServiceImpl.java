@@ -56,7 +56,7 @@ public class ProjectServiceImpl implements ProjectService {
     Project project = projectRepository.findById(projectId).orElseThrow(() -> new EntityNotFoundException(
         MessageFormat.format(PROJECT_NOT_FOUND_MESSAGE, projectId)));
 
-    project.setProjectFileName(Objects.requireNonNull(filecode).concat(fileName));
+    project.setProjectFileName(Objects.requireNonNull(filecode));
     projectRepository.save(project);
 
     return response;
